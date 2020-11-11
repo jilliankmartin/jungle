@@ -15,3 +15,16 @@ body {
 form.button_to {
   display: inline;
 }
+
+.parent {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.card {
+  padding: 30px;
+  margin: 30px;
+  text-align: center;
+   width: 200px;
+}

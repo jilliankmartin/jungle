@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @items = LineItem.where(order_id:@order.id)
     @products = Product.all
-    # raise @order.inspect
   end
 
   def create
