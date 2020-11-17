@@ -18,11 +18,11 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
       
     end
 
-    scenario "They see the product page" do
+    scenario "They can navigate from home page to the product page" do
       visit '/'
       find_link("spinny hat").click
       visit '/products/12'
-      # save_screenshot
+      save_screenshot
       expect(page).to have_content 'spinny hat'
       expect(page).to have_selector('h1', text: 'Apparel » spinny hat')
     end
