@@ -34,6 +34,24 @@ RSpec.describe User, type: :model do
       expect(@user2.errors.full_messages).to eq ["Email has already been taken"]
     end
 
+    it 'should contain a first name' do
+      @user = User.create(first_name: nil, last_name: "test", email: "test@test.com", password: "password", password_confirmation: "password")
+      expect(@user).to_not be_valid
+      expect(@user.errors.full_messages).to eq ["First name can't be blank"]
+    end
+
+    it 'should contain a last name' do
+      @user = User.create(first_name: "test", last_name: nil, email: "test@test.com", password: "password", password_confirmation: "password")
+      expect(@user).to_not be_valid
+      expect(@user.errors.full_messages).to eq ["Last name can't be blank"]
+    end
+
+    it 'should contain an email' do
+      @user = User.create(first_name: "test", last_name: "test", email: nil, password: "password", password_confirmation: "password")
+      expect(@user).to_not be_valid
+      expect(@user.errors.full_messages).to eq ["Email can't be blank"]
+    end
+
   end
 
 end
