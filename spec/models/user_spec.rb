@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'is not valid if password and password confirmation dont match' do
-      @user = User.create(first_name: "test", last_name: "test", email: "test@test.com", password: "password", password_confirmation: "test")
+      @user = User.create(first_name: "test", last_name: "test", email: "test@test.com", password: "password", password_confirmation: "testtesttest")
       expect(@user.errors.full_messages).to eq ["Password confirmation doesn't match Password"]
       expect(@user).to_not be_valid
     end
@@ -50,6 +50,12 @@ RSpec.describe User, type: :model do
       @user = User.create(first_name: "test", last_name: "test", email: nil, password: "password", password_confirmation: "password")
       expect(@user).to_not be_valid
       expect(@user.errors.full_messages).to eq ["Email can't be blank"]
+    end
+
+    it 'should not be valid if the password is under 8 characters' do
+    @user = User.create(first_name: "test", last_name: "test", email: "test@test.com", password: "pass", password_confirmation: "pass")
+    expect(@user).to_not be_valid
+    expect(@user.errors.full_messages).to eq ["Password is too short (minimum is 8 characters)"]
     end
 
   end
