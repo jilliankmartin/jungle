@@ -60,4 +60,14 @@ RSpec.describe User, type: :model do
 
   end
 
+  describe '.authenticate_with_credentials' do
+
+    it 'should not authenticate if credentials dont match' do
+      user = User.new(first_name: "test", last_name: "test", email: "test@test.com", password: "password", password_confirmation: "password")
+      user.save
+      invalid = User.authenticate_with_credentials("testtest@test.com", "password")
+      expect(invalid).to_not eq (user)
+    end
+  end
+
 end
